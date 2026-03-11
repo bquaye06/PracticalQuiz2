@@ -1,0 +1,383 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <title>Computer Graphics Assignment</title>
+    <meta name="description" content="A-Frame Table Scene with Chairs and Items">
+    <script src="https://aframe.io/releases/1.4.0/aframe.min.js"></script>
+</head>
+<body>
+    <a-scene background="color: #87CEEB" fog="type: linear; color: #87CEEB; near: 10; far: 50">
+        
+        <!-- Assets -->
+        <a-assets>
+            <!-- Define materials -->
+            <a-mixin id="wood-material" material="color: #8B4513; roughness: 0.8; metalness: 0.1"></a-mixin>
+            <a-mixin id="metal-material" material="color: #C0C0C0; roughness: 0.2; metalness: 0.8"></a-mixin>
+            <a-mixin id="fabric-material" material="color: #8B0000; roughness: 0.9; metalness: 0.0"></a-mixin>
+        </a-assets>
+
+        <!-- Lighting -->
+        <a-light type="ambient" color="#404040" intensity="0.4"></a-light>
+        <a-light type="directional" position="5 10 5" color="#ffffff" intensity="0.8" 
+                 light="castShadow: true" shadow="camera: top: 10; bottom: -10; left: -10; right: 10"></a-light>
+        <a-light type="point" position="0 3 0" color="#fff8dc" intensity="0.3"></a-light>
+
+        <!-- Table Area Lighting -->
+        <a-light type="spot" position="0 4 0" color="#ffffff" intensity="1.2"
+                 light="angle: 30; penumbra: 0.1; castShadow: true" 
+                 target="0 1 0" shadow="cast: true"></a-light>
+        <a-light type="point" position="0 2.5 0" color="#fff8dc" intensity="0.8"
+                 light="decay: 2" shadow="cast: true"></a-light>
+        <a-light type="point" position="2 2.5 0" color="#ffeeaa" intensity="0.5"
+                 light="decay: 1.5" shadow="cast: true"></a-light>
+        <a-light type="point" position="-2 2.5 0" color="#ffeeaa" intensity="0.5"
+                 light="decay: 1.5" shadow="cast: true"></a-light>
+
+        <!-- Floor -->
+        <a-plane position="0 0 0" rotation="-90 0 0" width="20" height="20" 
+                 material="color: #228B22; roughness: 0.7" shadow="receive: true"></a-plane>
+        
+        <!-- Decorative Floor Pattern -->
+        <a-circle position="0 0.01 0" rotation="-90 0 0" radius="8" 
+                  material="color: #32CD32; opacity: 0.3"></a-circle>
+        <a-ring position="0 0.02 0" rotation="-90 0 0" radius-inner="6" radius-outer="6.2" 
+                material="color: #FFD700; opacity: 0.5"></a-ring>
+
+        <!-- Beautiful Stone Pathway -->
+        <!-- Main pathway from front to hut entrance -->
+        <a-box position="0 0.03 6" width="2" height="0.05" depth="2" 
+               material="color: #D2691E; roughness: 0.8" shadow="receive: true"></a-box>
+        <a-box position="0 0.03 7.5" width="2" height="0.05" depth="1" 
+               material="color: #CD853F; roughness: 0.8" shadow="receive: true"></a-box>
+        <a-box position="0 0.03 8.8" width="2" height="0.05" depth="1.4" 
+               material="color: #D2691E; roughness: 0.8" shadow="receive: true"></a-box>
+        <a-box position="0 0.03 10.5" width="2" height="0.05" depth="2" 
+               material="color: #CD853F; roughness: 0.8" shadow="receive: true"></a-box>
+
+        <!-- Pathway stones/stepping stones -->
+        <a-cylinder position="-0.7 0.04 6.2" radius="0.3" height="0.08" 
+                    material="color: #696969; roughness: 0.9" shadow="cast: true; receive: true"></a-cylinder>
+        <a-cylinder position="0.7 0.04 6.8" radius="0.3" height="0.08" 
+                    material="color: #708090; roughness: 0.9" shadow="cast: true; receive: true"></a-cylinder>
+        <a-cylinder position="-0.5 0.04 7.8" radius="0.3" height="0.08" 
+                    material="color: #696969; roughness: 0.9" shadow="cast: true; receive: true"></a-cylinder>
+        <a-cylinder position="0.6 0.04 8.5" radius="0.3" height="0.08" 
+                    material="color: #708090; roughness: 0.9" shadow="cast: true; receive: true"></a-cylinder>
+        <a-cylinder position="-0.4 0.04 9.3" radius="0.3" height="0.08" 
+                    material="color: #696969; roughness: 0.9" shadow="cast: true; receive: true"></a-cylinder>
+        <a-cylinder position="0.5 0.04 10.1" radius="0.3" height="0.08" 
+                    material="color: #708090; roughness: 0.9" shadow="cast: true; receive: true"></a-cylinder>
+
+        <!-- Pathway borders with small plants -->
+        <a-sphere position="-1.2 0.1 6.5" radius="0.15" material="color: #228B22" shadow="cast: true"></a-sphere>
+        <a-sphere position="1.2 0.1 7.2" radius="0.15" material="color: #32CD32" shadow="cast: true"></a-sphere>
+        <a-sphere position="-1.3 0.1 8.1" radius="0.15" material="color: #228B22" shadow="cast: true"></a-sphere>
+        <a-sphere position="1.1 0.1 9.0" radius="0.15" material="color: #32CD32" shadow="cast: true"></a-sphere>
+        <a-sphere position="-1.0 0.1 9.8" radius="0.15" material="color: #228B22" shadow="cast: true"></a-sphere>
+        <a-sphere position="1.3 0.1 10.6" radius="0.15" material="color: #32CD32" shadow="cast: true"></a-sphere>
+
+        <!-- Small decorative flowers along pathway -->
+        <a-sphere position="-1.5 0.12 7.0" radius="0.05" material="color: #FF69B4" shadow="cast: true"></a-sphere>
+        <a-sphere position="1.4 0.12 7.8" radius="0.05" material="color: #FFD700" shadow="cast: true"></a-sphere>
+        <a-sphere position="-1.2 0.12 8.8" radius="0.05" material="color: #FF4500" shadow="cast: true"></a-sphere>
+        <a-sphere position="1.0 0.12 9.5" radius="0.05" material="color: #9370DB" shadow="cast: true"></a-sphere>
+        <a-sphere position="-0.8 0.12 10.3" radius="0.05" material="color: #FF1493" shadow="cast: true"></a-sphere>
+
+        <!-- Main Table -->
+        <!-- Table Top -->
+        <a-cylinder position="0 1 0" radius="2.5" height="0.1" 
+                    material="color: #8B4513; roughness: 0.8" shadow="cast: true; receive: true"></a-cylinder>
+        
+        <!-- Table Base -->
+        <a-cylinder position="0 0.5 0" radius="0.2" height="1" 
+                    material="color: #654321; roughness: 0.8" shadow="cast: true"></a-cylinder>
+
+        <!-- Chairs -->
+        <!-- Chair 1 -->
+        <a-entity position="3.5 0 0" rotation="0 -90 0">
+            <!-- Seat -->
+            <a-box position="0 0.5 0" width="0.6" height="0.05" depth="0.6" 
+                   mixin="fabric-material" shadow="cast: true"></a-box>
+            <!-- Backrest -->
+            <a-box position="0 1 -0.275" width="0.6" height="1" depth="0.05" 
+                   mixin="fabric-material" shadow="cast: true"></a-box>
+            <!-- Chair Legs -->
+            <a-cylinder position="-0.25 0.25 -0.25" radius="0.02" height="0.5" 
+                        mixin="wood-material" shadow="cast: true"></a-cylinder>
+            <a-cylinder position="0.25 0.25 -0.25" radius="0.02" height="0.5" 
+                        mixin="wood-material" shadow="cast: true"></a-cylinder>
+            <a-cylinder position="-0.25 0.25 0.25" radius="0.02" height="0.5" 
+                        mixin="wood-material" shadow="cast: true"></a-cylinder>
+            <a-cylinder position="0.25 0.25 0.25" radius="0.02" height="0.5" 
+                        mixin="wood-material" shadow="cast: true"></a-cylinder>
+        </a-entity>
+
+        <!-- Chair 2 -->
+        <a-entity position="-3.5 0 0" rotation="0 90 0">
+            <!-- Seat -->
+            <a-box position="0 0.5 0" width="0.6" height="0.05" depth="0.6" 
+                   mixin="fabric-material" shadow="cast: true"></a-box>
+            <!-- Backrest -->
+            <a-box position="0 1 -0.275" width="0.6" height="1" depth="0.05" 
+                   mixin="fabric-material" shadow="cast: true"></a-box>
+            <!-- Chair Legs -->
+            <a-cylinder position="-0.25 0.25 -0.25" radius="0.02" height="0.5" 
+                        mixin="wood-material" shadow="cast: true"></a-cylinder>
+            <a-cylinder position="0.25 0.25 -0.25" radius="0.02" height="0.5" 
+                        mixin="wood-material" shadow="cast: true"></a-cylinder>
+            <a-cylinder position="-0.25 0.25 0.25" radius="0.02" height="0.5" 
+                        mixin="wood-material" shadow="cast: true"></a-cylinder>
+            <a-cylinder position="0.25 0.25 0.25" radius="0.02" height="0.5" 
+                        mixin="wood-material" shadow="cast: true"></a-cylinder>
+        </a-entity>
+
+        <!-- Chair 3 -->
+        <a-entity position="0 0 3.5" rotation="0 180 0">
+            <!-- Seat -->
+            <a-box position="0 0.5 0" width="0.6" height="0.05" depth="0.6" 
+                   material="color: #4169E1; roughness: 0.9" shadow="cast: true"></a-box>
+            <!-- Backrest -->
+            <a-box position="0 1 -0.275" width="0.6" height="1" depth="0.05" 
+                   material="color: #4169E1; roughness: 0.9" shadow="cast: true"></a-box>
+            <!-- Chair Legs -->
+            <a-cylinder position="-0.25 0.25 -0.25" radius="0.02" height="0.5" 
+                        mixin="wood-material" shadow="cast: true"></a-cylinder>
+            <a-cylinder position="0.25 0.25 -0.25" radius="0.02" height="0.5" 
+                        mixin="wood-material" shadow="cast: true"></a-cylinder>
+            <a-cylinder position="-0.25 0.25 0.25" radius="0.02" height="0.5" 
+                        mixin="wood-material" shadow="cast: true"></a-cylinder>
+            <a-cylinder position="0.25 0.25 0.25" radius="0.02" height="0.5" 
+                        mixin="wood-material" shadow="cast: true"></a-cylinder>
+        </a-entity>
+
+        <!-- Chair 4 -->
+        <a-entity position="0 0 -3.5" rotation="0 0 0">
+            <!-- Seat -->
+            <a-box position="0 0.5 0" width="0.6" height="0.05" depth="0.6" 
+                   material="color: #4169E1; roughness: 0.9" shadow="cast: true"></a-box>
+            <!-- Backrest -->
+            <a-box position="0 1 -0.275" width="0.6" height="1" depth="0.05" 
+                   material="color: #4169E1; roughness: 0.9" shadow="cast: true"></a-box>
+            <!-- Chair Legs -->
+            <a-cylinder position="-0.25 0.25 -0.25" radius="0.02" height="0.5" 
+                        mixin="wood-material" shadow="cast: true"></a-cylinder>
+            <a-cylinder position="0.25 0.25 -0.25" radius="0.02" height="0.5" 
+                        mixin="wood-material" shadow="cast: true"></a-cylinder>
+            <a-cylinder position="-0.25 0.25 0.25" radius="0.02" height="0.5" 
+                        mixin="wood-material" shadow="cast: true"></a-cylinder>
+            <a-cylinder position="0.25 0.25 0.25" radius="0.02" height="0.5" 
+                        mixin="wood-material" shadow="cast: true"></a-cylinder>
+        </a-entity>
+
+        <!-- Items on Table -->
+        <!-- MiLo Tin -->
+        <a-entity position="-1.2 1.25 -0.5">
+            <!-- Main tin body -->
+            <a-cylinder radius="0.2" height="0.4" 
+                        material="color: #2F4F2F; roughness: 0.3; metalness: 0.6" 
+                        shadow="cast: true"></a-cylinder>
+            <!-- Tin top -->
+            <a-cylinder position="0 0.21 0" radius="0.2" height="0.02" 
+                        material="color: #FFD700; roughness: 0.1; metalness: 0.8" 
+                        shadow="cast: true"></a-cylinder>
+            <!-- Label -->
+            <a-text position="0 0 0.21" value="MiLo" align="center" color="#FFFFFF" 
+                    scale="0.4 0.4 0.4" rotation="0 0 0"></a-text>
+        </a-entity>
+
+        <!-- Milk Tin -->
+        <a-entity position="1.2 1.25 -0.5">
+            <!-- Main tin body -->
+            <a-cylinder radius="0.2" height="0.4" 
+                        material="color: #2C2C2C; roughness: 0.3; metalness: 0.6" 
+                        shadow="cast: true"></a-cylinder>
+            <!-- Tin top -->
+            <a-cylinder position="0 0.21 0" radius="0.2" height="0.02" 
+                        material="color: #C0C0C0; roughness: 0.1; metalness: 0.8" 
+                        shadow="cast: true"></a-cylinder>
+            <!-- Label -->
+            <a-text position="0 0 0.22" value="MILK" align="center" color="#FFFFFF" 
+                    scale="0.3 0.3 0.3" rotation="0 0 0"></a-text>
+        </a-entity>
+
+        <!-- Cup 1 -->
+        <a-entity position="-1.5 1.13 0.3">
+            <!-- Cup body -->
+            <a-cylinder radius="0.12" height="0.15" 
+                        material="color: #F5F5F5; roughness: 0.2; metalness: 0.1" 
+                        shadow="cast: true"></a-cylinder>
+            <!-- Cup handle -->
+            <a-torus position="0.15 0 0" radius="0.06" radius-tubular="0.015" 
+                     rotation="0 0 90" material="color: #F5F5F5; roughness: 0.2" 
+                     shadow="cast: true"></a-torus>
+            <!-- Coffee inside -->
+            <a-cylinder position="0 0.06 0" radius="0.11" height="0.02" 
+                        material="color: #8B4513; opacity: 0.8" 
+                        shadow="receive: true"></a-cylinder>
+        </a-entity>
+
+        <!-- Cup 2 -->
+        <a-entity position="1.5 1.13 0.3">
+            <!-- Cup body -->
+            <a-cylinder radius="0.12" height="0.15" 
+                        material="color: #FFB6C1; roughness: 0.2; metalness: 0.1" 
+                        shadow="cast: true"></a-cylinder>
+            <!-- Cup handle -->
+            <a-torus position="0.15 0 0" radius="0.06" radius-tubular="0.015" 
+                     rotation="0 0 90" material="color: #FFB6C1; roughness: 0.2" 
+                     shadow="cast: true"></a-torus>
+            <!-- Tea inside -->
+            <a-cylinder position="0 0.06 0" radius="0.11" height="0.02" 
+                        material="color: #DEB887; opacity: 0.8" 
+                        shadow="receive: true"></a-cylinder>
+        </a-entity>
+
+        <!-- Additional Decorative Items -->
+        <!-- Table Runner -->
+        <a-box position="0 1.06 0" width="4.5" height="0.001" depth="0.6" 
+               material="color: #DC143C; opacity: 0.9" shadow="receive: true"></a-box>
+
+
+
+        <!-- Napkins/Papers -->
+        <a-box position="-0.5 1.07 0.2" width="0.2" height="0.001" depth="0.15" 
+               material="color: #FFFFFF; opacity: 0.95" shadow="cast: true"></a-box>
+        <a-box position="0.5 1.07 0.2" width="0.2" height="0.001" depth="0.15" 
+               material="color: #FFFFFF; opacity: 0.95" shadow="cast: true"></a-box>
+
+        <!-- Spoons -->
+        <a-entity position="-0.2 1.07 -0.2" rotation="0 30 0">
+            <a-box width="0.02" height="0.001" depth="0.25" 
+                   material="color: #2C2C2C; roughness: 0.2; metalness: 0.8" shadow="cast: true"></a-box>
+            <a-sphere position="0 0.001 0.14" radius="0.025" 
+                      material="color: #2C2C2C; roughness: 0.2; metalness: 0.8" shadow="cast: true"></a-sphere>
+        </a-entity>
+        
+        <a-entity position="0.2 1.07 -0.2" rotation="0 -30 0">
+            <a-box width="0.02" height="0.001" depth="0.25" 
+                   material="color: #2C2C2C; roughness: 0.2; metalness: 0.8" shadow="cast: true"></a-box>
+            <a-sphere position="0 0.001 0.14" radius="0.025" 
+                      material="color: #2C2C2C; roughness: 0.2; metalness: 0.8" shadow="cast: true"></a-sphere>
+        </a-entity>
+
+        <!-- Beautiful Summer Hut -->
+        <!-- Main Structure Posts -->
+        <a-cylinder position="-5 2.5 -5" radius="0.25" height="5" 
+                    material="color: #CD853F; roughness: 0.8" shadow="cast: true"></a-cylinder>
+        <a-cylinder position="5 2.5 -5" radius="0.25" height="5" 
+                    material="color: #CD853F; roughness: 0.8" shadow="cast: true"></a-cylinder>
+        <a-cylinder position="-5 2.5 5" radius="0.25" height="5" 
+                    material="color: #CD853F; roughness: 0.8" shadow="cast: true"></a-cylinder>
+        <a-cylinder position="5 2.5 5" radius="0.25" height="5" 
+                    material="color: #CD853F; roughness: 0.8" shadow="cast: true"></a-cylinder>
+
+        <!-- Hut Floor/Platform -->
+        <a-box position="0 0.1 0" width="10.5" height="0.2" depth="10.5" 
+               material="color: #8B7355; roughness: 0.8" shadow="cast: true; receive: true"></a-box>
+
+        <!-- Back and Side Walls -->
+        <a-box position="0 3 -5.2" width="10.5" height="4" depth="0.3" 
+               material="color: #F5DEB3; roughness: 0.7" shadow="cast: true; receive: true"></a-box>
+        <a-box position="-5.2 3 0" width="0.3" height="4" depth="6" 
+               material="color: #F5DEB3; roughness: 0.7" shadow="cast: true; receive: true"></a-box>
+        <a-box position="5.2 3 0" width="0.3" height="4" depth="6" 
+               material="color: #F5DEB3; roughness: 0.7" shadow="cast: true; receive: true"></a-box>
+
+
+
+
+
+        <!-- Pitched Roof -->
+        <a-box position="0 5.8 -2.6" width="11" height="0.15" depth="5" 
+               rotation="20 0 0" material="color: #B22222; roughness: 0.5" shadow="cast: true"></a-box>
+        <a-box position="0 5.8 2.6" width="11" height="0.15" depth="5" 
+               rotation="-20 0 0" material="color: #B22222; roughness: 0.5" shadow="cast: true"></a-box>
+
+        <!-- Roof Peak -->
+        <a-box position="0 6.2 0" width="11" height="0.2" depth="0.3" 
+               material="color: #8B0000; roughness: 0.7" shadow="cast: true"></a-box>
+
+        <!-- Decorative Roof Edges -->
+        <a-box position="0 5 -5.2" width="11" height="0.1" depth="0.4" 
+               material="color: #DAA520; roughness: 0.3" shadow="cast: true"></a-box>
+        <a-box position="0 5 5.2" width="11" height="0.1" depth="0.4" 
+               material="color: #DAA520; roughness: 0.3" shadow="cast: true"></a-box>
+
+        <!-- Large Windows -->
+        <a-box position="-2.5 3.5 -5.15" width="2" height="1.5" depth="0.05" 
+               material="color: #87CEEB; opacity: 0.6; roughness: 0.1" shadow="receive: true"></a-box>
+        <a-box position="2.5 3.5 -5.15" width="2" height="1.5" depth="0.05" 
+               material="color: #87CEEB; opacity: 0.6; roughness: 0.1" shadow="receive: true"></a-box>
+
+        <!-- Window Frames -->
+        <a-box position="-2.5 3.5 -5.1" width="2.2" height="1.7" depth="0.03" 
+               material="color: #FFFFFF; roughness: 0.2" shadow="cast: true"></a-box>
+        <a-box position="2.5 3.5 -5.1" width="2.2" height="1.7" depth="0.03" 
+               material="color: #FFFFFF; roughness: 0.2" shadow="cast: true"></a-box>
+
+        <!-- Window Shutters -->
+        <a-box position="-3.8 3.5 -5.05" width="0.4" height="1.8" depth="0.05" 
+               material="color: #228B22; roughness: 0.8" shadow="cast: true"></a-box>
+        <a-box position="-1.2 3.5 -5.05" width="0.4" height="1.8" depth="0.05" 
+               material="color: #228B22; roughness: 0.8" shadow="cast: true"></a-box>
+        <a-box position="1.2 3.5 -5.05" width="0.4" height="1.8" depth="0.05" 
+               material="color: #228B22; roughness: 0.8" shadow="cast: true"></a-box>
+        <a-box position="3.8 3.5 -5.05" width="0.4" height="1.8" depth="0.05" 
+               material="color: #228B22; roughness: 0.8" shadow="cast: true"></a-box>
+
+
+
+
+
+        <!-- Colorful Flowers -->
+        <a-sphere position="-3 2.8 -4.8" radius="0.1" material="color: #FF69B4" shadow="cast: true"></a-sphere>
+        <a-sphere position="-2.5 2.9 -4.8" radius="0.1" material="color: #FFD700" shadow="cast: true"></a-sphere>
+        <a-sphere position="-2 2.8 -4.8" radius="0.1" material="color: #FF4500" shadow="cast: true"></a-sphere>
+        <a-sphere position="2 2.8 -4.8" radius="0.1" material="color: #9370DB" shadow="cast: true"></a-sphere>
+        <a-sphere position="2.5 2.9 -4.8" radius="0.1" material="color: #32CD32" shadow="cast: true"></a-sphere>
+        <a-sphere position="3 2.8 -4.8" radius="0.1" material="color: #FF1493" shadow="cast: true"></a-sphere>
+
+        <!-- Hanging Lanterns -->
+        <a-entity position="-3.5 4.8 3.5">
+            <a-cylinder radius="0.25" height="0.5" 
+                        material="color: #FFD700; opacity: 0.8; roughness: 0.2" 
+                        shadow="cast: true"></a-cylinder>
+            <a-cylinder position="0 0.4 0" radius="0.03" height="0.8" 
+                        material="color: #8B4513; metalness: 0.8" shadow="cast: true"></a-cylinder>
+        </a-entity>
+        
+        <a-entity position="3.5 4.8 3.5">
+            <a-cylinder radius="0.25" height="0.5" 
+                        material="color: #FF6347; opacity: 0.8; roughness: 0.2" 
+                        shadow="cast: true"></a-cylinder>
+            <a-cylinder position="0 0.4 0" radius="0.03" height="0.8" 
+                        material="color: #8B4513; metalness: 0.8" shadow="cast: true"></a-cylinder>
+        </a-entity>
+
+        <!-- Decorative Vines -->
+        <a-cylinder position="-5 3.5 -5" radius="0.3" height="3" 
+                    material="color: #228B22; opacity: 0.6; roughness: 0.9" 
+                    shadow="cast: true"></a-cylinder>
+        <a-cylinder position="5 3.8 -5" radius="0.3" height="2.5" 
+                    material="color: #228B22; opacity: 0.6; roughness: 0.9" 
+                    shadow="cast: true"></a-cylinder>
+
+        <!-- Floating Decorative Rings -->
+        <a-ring position="-3 3 -3" radius-inner="0.3" radius-outer="0.4" 
+                material="color: #FFD700; opacity: 0.6"></a-ring>
+        <a-ring position="3 3.5 -3" radius-inner="0.2" radius-outer="0.3" 
+                material="color: #FF69B4; opacity: 0.6"></a-ring>
+
+        <!-- Camera -->
+        <a-camera position="0 3 6" look-controls wasd-controls 
+                  camera="fov: 70">
+            <a-cursor></a-cursor>
+        </a-camera>
+
+        <!-- Sky -->
+        <a-sky color="#87CEEB" material="shader: gradient; topColor: #87CEEB; bottomColor: #E0F6FF"></a-sky>
+        
+    </a-scene>
+</body>
+</html>
