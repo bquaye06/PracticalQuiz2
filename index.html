@@ -373,26 +373,28 @@
         <a-camera position="0 3 6" look-controls wasd-controls 
                   camera="fov: 70">
             <a-cursor></a-cursor>
+            
+            <!-- Navigation Instructions - Attached to camera for visibility -->
+            <a-text position="-2 1.5 -3" value="NAVIGATION CONTROLS:" align="left" color="#FFFFFF" 
+                    scale="0.4 0.4 0.4" font="roboto" 
+                    material="color: #FFFFFF; shader: msdf; side: double"></a-text>
+            <a-text position="-2 1.3 -3" value="Mouse: Look around" align="left" color="#000000" 
+                    scale="0.3 0.3 0.3" font="roboto" 
+                    material="color: #000000; shader: msdf; side: double"></a-text>
+            <a-text position="-2 1.1 -3" value="W A S D: Move around" align="left" color="#000000" 
+                    scale="0.3 0.3 0.3" font="roboto" 
+                    material="color: #000000; shader: msdf; side: double"></a-text>
+            <a-text position="-2 0.9 -3" value="Click & Drag: Look around" align="left" color="#000000" 
+                    scale="0.3 0.3 0.3" font="roboto" 
+                    material="color: #000000; shader: msdf; side: double"></a-text>
+            <a-text position="-2 0.7 -3" value="Mobile: Touch & drag" align="left" color="#000000" 
+                    scale="0.3 0.3 0.3" font="roboto" 
+                    material="color: #000000; shader: msdf; side: double"></a-text>
         </a-camera>
 
         <!-- Sky -->
         <a-sky color="#87CEEB" material="shader: gradient; topColor: #87CEEB; bottomColor: #E0F6FF"></a-sky>
         
-        <!-- Navigation Instructions -->
-        <a-text position="-4 6 -8" value="NAVIGATION CONTROLS:" align="left" color="#000000" 
-                scale="0.8 0.8 0.8" font="roboto"></a-text>
-        <a-text position="-4 5.5 -8" value="MOUSE: Look around" align="left" color="#333333" 
-                scale="0.6 0.6 0.6" font="roboto"></a-text>
-        <a-text position="-4 5.2 -8" value="W A S D: Move forward/left/back/right" align="left" color="#333333" 
-                scale="0.6 0.6 0.6" font="roboto"></a-text>
-        <a-text position="-4 4.9 -8" value="CLICK & DRAG: Look around" align="left" color="#333333" 
-                scale="0.6 0.6 0.6" font="roboto"></a-text>
-        <a-text position="-4 4.6 -8" value="MOBILE: Touch & drag to look" align="left" color="#333333" 
-                scale="0.6 0.6 0.6" font="roboto"></a-text>
-        
-        <!-- Scene Title -->
-        <a-text position="0 7 -10" value="SUMMER HUT DINING EXPERIENCE" align="center" color="#8B0000" 
-                scale="1.2 1.2 1.2" font="roboto"></a-text>
         
     </a-scene>
 </body>
